@@ -6,5 +6,8 @@
             "email": "office@alexanderkamburov.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {"": ""}
+    }
 }
