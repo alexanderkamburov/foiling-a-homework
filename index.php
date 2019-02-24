@@ -7,6 +7,14 @@ echo "\n\r";
 
 $alphabet = readline("Въвеждане на тип на азбуката в автомата (1 - цяло число, 2 – символен тип): ");
 
+if (!array_key_exists($alphabet, AbstractDeterminateFiniteAutomaton::ALPHABET_TYPES)) {
+    throw new \InvalidArgumentException;
+}
+
+$automatonClass = AbstractDeterminateFiniteAutomaton::ALPHABET_TYPES[$alphabet];
+$automaton = new $automatonClass;
+
+
 $numStates = readline("Моля въведете брой състоянията: ");
 $states = array();
 for ($i=0; $i < $numStates; $i++) {
@@ -15,6 +23,8 @@ for ($i=0; $i < $numStates; $i++) {
     $state = new State($stateName);
     $states[] = $state;
 }
+$automaton->setNumStates($numStates);
+$automaton->setStates($states);
 
 $numSymbols = readline("Моля въведете брой символи в азбуката на автомата: ");
 $symbols = array();
@@ -32,6 +42,7 @@ for ($i=0; $i < count($states); $i++) {
 }
 
 $startState = readline("Моля въведете начално състояние: ");
+$automaton->setStartState($startState);
 
 $numEndStates = readline("Моля въведете брой крайни състояния: ");
 $endStates = array();
@@ -40,4 +51,6 @@ for ($i=0; $i < $numEndStates; $i++) {
     $endState = readline("Моля въведете крайно състояние номер [$n]");
     $endStates[] = $endState;
 }
+$automaton->setNumEndStates($numEndStates);
+$automaton->setEndStates($endStates);
 

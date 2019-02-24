@@ -1,6 +1,6 @@
 <?php
 
-class DeterminateFinateAutomatonChar extends AbstractDeterminateFinateAutomaton
+class DeterminateFiniteAutomatonChar extends AbstractDeterminateFiniteAutomaton
 {
     /**
      * @var array[string]
