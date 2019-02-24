@@ -2,9 +2,6 @@
 
 require './vendor/autoload.php';
 
-echo "Hello!\n\r";
-echo "\n\r";
-
 $alphabet = readline("Въвеждане на тип на азбуката в автомата (1 - цяло число, 2 – символен тип): ");
 
 if (!array_key_exists($alphabet, AbstractDeterminateFiniteAutomaton::ALPHABET_TYPES)) {
@@ -13,7 +10,6 @@ if (!array_key_exists($alphabet, AbstractDeterminateFiniteAutomaton::ALPHABET_TY
 
 $automatonClass = AbstractDeterminateFiniteAutomaton::ALPHABET_TYPES[$alphabet];
 $automaton = new $automatonClass;
-
 
 $numStates = readline("Моля въведете брой състоянията: ");
 $states = array();

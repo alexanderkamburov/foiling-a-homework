@@ -44,7 +44,7 @@ abstract class AbstractDeterminateFiniteAutomaton
     /**
      * @param State $startState
      *
-     * @throws  AutomatonException
+     * @throws  AutomatonException Ако състояние вече е маркирано като начално или ако даденото състояние не е указано в масива допустими състояния
      * @return self
      */
     public function setStartState(State $startState)
@@ -52,6 +52,11 @@ abstract class AbstractDeterminateFiniteAutomaton
         if ($this->startState && $this->startState != $startState) {
             throw new AutomatonException(sprintf("Опит да се маркира второ състояние за начално: заложено начално състояние [%s], маркирано ново състояние [%s]", $this->startState->getName(), $startState->getName()));
         }
+
+        if (!in_array($startState, $this->states)) {
+            throw new AutomatonException(sprintf("Подаденото състояние [%s] липсва в масива със състояния", $startState->getName()));
+        }
+
         $this->startState = $startState;
 
         return $this;
