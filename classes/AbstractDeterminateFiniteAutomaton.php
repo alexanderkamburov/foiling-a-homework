@@ -163,7 +163,7 @@ abstract class AbstractDeterminateFiniteAutomaton
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getNumEndStates()
     {
@@ -171,11 +171,11 @@ abstract class AbstractDeterminateFiniteAutomaton
     }
 
     /**
-     * @param mixed $numEndStates
+     * @param int $numEndStates
      *
      * @return self
      */
-    public function setNumEndStates($numEndStates)
+    public function setNumEndStates(int $numEndStates)
     {
         $this->numEndStates = $numEndStates;
 

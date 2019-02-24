@@ -12,7 +12,7 @@ class DeterminateFiniteAutomatonChar extends AbstractDeterminateFiniteAutomaton
     private $chars = array();
 
     /**
-     * @return mixed
+     * @return array[string]
      */
     public function getChars()
     {
@@ -20,7 +20,7 @@ class DeterminateFiniteAutomatonChar extends AbstractDeterminateFiniteAutomaton
     }
 
     /**
-     * @param mixed $chars
+     * @param array[string] $chars
      *
      * @return self
      */

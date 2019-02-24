@@ -12,7 +12,7 @@ class DeterminateFiniteAutomatonInt extends AbstractDeterminateFiniteAutomaton
     private $ints = array();
 
     /**
-     * @return mixed
+     * @return array[int]
      */
     public function getInts()
     {
@@ -20,7 +20,7 @@ class DeterminateFiniteAutomatonInt extends AbstractDeterminateFiniteAutomaton
     }
 
     /**
-     * @param mixed $ints
+     * @param array[int] $ints
      *
      * @return self
      */
