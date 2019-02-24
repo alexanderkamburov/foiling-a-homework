@@ -1,11 +1,5 @@
 {
-    "name": "alexanderkamburov/niki-homework",
-    "authors": [
-        {
-            "name": "Alexander Kamburov",
-            "email": "office@alexanderkamburov.com"
-        }
-    ],
+    "name": "foiling/a-homework",
     "require": {},
     "autoload": {
         "psr-4": {"": "classes"}
