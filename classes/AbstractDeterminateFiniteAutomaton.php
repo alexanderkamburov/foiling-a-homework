@@ -135,6 +135,13 @@ abstract class AbstractDeterminateFiniteAutomaton
     {
         $this->endStates = $endStates;
 
+        for ($i = 0; $i < count($endStates); $i++) {
+            if (!in_array($endStates[$i], $this->states)) {
+                throw new AutomatonException(sprintf("Подаденото състояние [%s] липсва в масива със състояния", $endStates[$i]->getName()));
+            }
+        }
+
+
         return $this;
     }
 
