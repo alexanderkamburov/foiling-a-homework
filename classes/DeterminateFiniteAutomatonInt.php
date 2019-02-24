@@ -2,6 +2,10 @@
 
 class DeterminateFiniteAutomatonInt extends AbstractDeterminateFiniteAutomaton
 {
+    protected function getType() {
+        return 'integer';
+    }
+
     /**
      * @var array[int]
      */

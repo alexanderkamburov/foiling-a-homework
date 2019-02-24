@@ -29,24 +29,27 @@ for ($i=0; $i < $numSymbols; $i++) {
     $symbol = readline("Моля въведете символ номер [$n]: ");
     $symbols[] = $symbol;
 }
+$automaton->setAlphabet($symbols);
 
 $transitionTable = array();
 for ($i=0; $i < count($states); $i++) {
     for ($j=0; $j < count($symbols); $j++) {
-        $transitionTable[$i][$j] = readline(sprintf("Моля въведете (%s, %s): ", $states[$i]->getName(), $symbols[$j]));
+        $transitionTable[$i][$j] = readline(sprintf("Моля въведете (%s, %s)->", $states[$i]->getName(), $symbols[$j]));
     }
 }
+$automaton->setTransitionTable($transitionTable);
 
-$startState = readline("Моля въведете начално състояние: ");
+$startState = new State(readline("Моля въведете начално състояние: "));
 $automaton->setStartState($startState);
 
 $numEndStates = readline("Моля въведете брой крайни състояния: ");
 $endStates = array();
 for ($i=0; $i < $numEndStates; $i++) {
     $n = $i+1;
-    $endState = readline("Моля въведете крайно състояние номер [$n]");
+    $endState = new State(readline("Моля въведете крайно състояние номер [$n]: "));
     $endStates[] = $endState;
 }
 $automaton->setNumEndStates($numEndStates);
 $automaton->setEndStates($endStates);
 
+var_dump($automaton);

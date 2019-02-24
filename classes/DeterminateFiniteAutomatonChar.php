@@ -2,6 +2,10 @@
 
 class DeterminateFiniteAutomatonChar extends AbstractDeterminateFiniteAutomaton
 {
+    protected function getType() {
+        return 'string';
+    }
+
     /**
      * @var array[string]
      */

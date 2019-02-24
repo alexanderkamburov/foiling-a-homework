@@ -26,12 +26,25 @@ abstract class AbstractDeterminateFiniteAutomaton
      */
     protected $startState;
 
+    /**
+     * @var int
+     */
     protected $numEndStates;
 
     /**
      * @var array
      */
     protected $endStates;
+
+    /**
+     * @var array
+     */
+    protected $alphabet;
+
+    /**
+     * @var array
+     */
+    protected $transitionTable;
 
     /**
      * @return State
@@ -136,6 +149,10 @@ abstract class AbstractDeterminateFiniteAutomaton
         $this->endStates = $endStates;
 
         for ($i = 0; $i < count($endStates); $i++) {
+            if ($endStates[$i] instanceof State === false) {
+                throw new \InvalidArgumentException('Всяко крайно състояниет трябва да е обект от клас State');
+            }
+
             if (!in_array($endStates[$i], $this->states)) {
                 throw new AutomatonException(sprintf("Подаденото състояние [%s] липсва в масива със състояния", $endStates[$i]->getName()));
             }
@@ -161,6 +178,59 @@ abstract class AbstractDeterminateFiniteAutomaton
     public function setNumEndStates($numEndStates)
     {
         $this->numEndStates = $numEndStates;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAlphabet()
+    {
+        return $this->alphabet;
+    }
+
+    /**
+     * @param array $alphabet
+     *
+     * @return self
+     */
+    public function setAlphabet(array $alphabet)
+    {
+        $requiredType = $this->getType();
+        foreach ($alphabet as $symbol) {
+            $actualType = gettype($symbol);
+            if ($actualType !== $requiredType && !settype($alphabet, $requiredType)) {
+                throw new \InvalidArgumentException(sprintf('Елемент от азбуката e от тип %s, а не е от очаквания тип %s', $actualType, $requiredType));
+            }
+        }
+
+        $this->alphabet = $alphabet;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    abstract protected function getType();
+
+    /**
+     * @return array
+     */
+    public function getTransitionTable()
+    {
+        return $this->transitionTable;
+    }
+
+    /**
+     * @param array $transitionTable
+     *
+     * @return self
+     */
+    public function setTransitionTable(array $transitionTable)
+    {
+        $this->transitionTable = $transitionTable;
 
         return $this;
     }
